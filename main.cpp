@@ -11,7 +11,7 @@ int main() {
 
 	while(game.getPlayer().getHealth()>0){
 		Level l = game.getCurrentLevel();
-		cout << "\033[H\033[J";
+		cout << "\033[H";
 		l.printLevel();
 		l.checkForDead();
 		l.moveEnemies();
