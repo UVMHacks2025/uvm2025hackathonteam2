@@ -12,10 +12,11 @@ int main() {
 	Interface test = Interface();
 
 	
-	test.ask(q);
+	test.ask(q,1);
 	Player p = Player();
 	Enemy e = Enemy(100,1,0,0);
 	test.fight(p,e);
+
 	cout << "Running" << endl;	
 	return 0;
 }

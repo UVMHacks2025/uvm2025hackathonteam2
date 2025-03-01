@@ -12,11 +12,9 @@ using namespace std;
 #define WEST 3
 class Interface {
 private:
-	Question q;
-	bool threadDone = false;
-	bool threadOutput = false;
+	 Question q;
 	long timelimit;
-	bool isGoodAnswer(string s,int n) {
+	 bool isGoodAnswer(string s,int n) {
 		int c = (int)s[0];
 		c |= 32;
 		c -= 96;
@@ -52,18 +50,16 @@ public:
 			
 	}
 	int fight(Player p, Enemy e) {
-		vector<ability> abilities = p.getAbilities();
+		vector<string> abilities = p.getAbilities();
 		for(int i = 0; i < abilities.size(); ++i){
-			cout << abilities[i].name << ", ";
+			cout << abilities[i] << ", ";
 		}
+
+
+
 		return 0;	
 	}
-	void askQuestion(){
-		threadDone = false;
-		threadOutput = false;
-		threadOutput = ask(q);
-		threadDone = true;
-	}
+	
 
 	bool ask(Question question){
 		//prompt
@@ -91,16 +87,15 @@ public:
 	bool ask(Question question, long timeSeconds) {
 		auto start = chrono::steady_clock::now();
 
-		thread t(askQuestion);
-		while((long)chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now()-start).count() < timeSeconds && !threadDone) {
-			
+		bool out = ask(question);
+		if((long)chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now()-start).count() < timeSeconds ) {
+			return out;
 		}
-		bool f = threadOutput;
-		t.join();
+		cout << "Time Limit passed"<< endl;
 
 
 
-		return f;
+		return false;
 	   		
 	}
 
