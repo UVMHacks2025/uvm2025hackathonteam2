@@ -1,5 +1,7 @@
 #include "interface.h"
 #include <iostream>
+
+#include "question.h"
 using namespace std;
 //mac was here
 
