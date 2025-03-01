@@ -4,31 +4,48 @@
 #include <iostream>
 #include <vector>
 
+#include "Enemy.h"
+
 using namespace std;
 
 class Player {
 private:
     int health;
-    int speed;
     int experience;
+    bool shieldUp;
+    int attackDamage;
 
     int x;
     int y;
 
-public:
-    Player() : health(100), speed(1), experience(0), x(0), y(0) {};
-
-    void damage(int damage) {
-        health -= damage;
+    void levelUp() {
+        cout << "Level up!!! Now level " << getLevel() << endl;
+        health += 2;
+        attackDamage += 1;
     }
 
-    void add_experience(int exp) {
-        int old_level = exp / 10;
+public:
+    Player() : health(10), experience(0), shieldUp(false), attackDamage(1), x(0), y(0) {};
+
+    void damage(int damage) {
+        if (shieldUp) {
+              cout << "Shield blocked " << damage << " points of damage" << endl;
+              shieldUp = false;
+        } else {
+            health -= damage;
+        }
+    }
+
+    void addExperience(int exp) {
+        const int oldLevel = exp / 10;
         this->experience += exp;
 
-        if (getLevel() > old_level) {
-          cout << "Level up!!! Now level " <<getLevel() << endl;
+        if (getLevel() > oldLevel) {
         }
+    }
+
+    vector<string> getAbilities() {
+        return { "move", "shield", "attack" };
     }
 
     void move(vector<int> pos) {
@@ -36,8 +53,32 @@ public:
         x += pos[1];
     }
 
+    void shield() {
+        shieldUp = true;
+    }
+
+    void attack(Enemy enemy) {
+        enemy.hit(attackDamage);
+    }
+
+    int getHealth() {
+        return health;
+    }
+
+    int getExperience() {
+        return experience;
+    }
+
     int getLevel() {
       return experience / 10;
+    }
+
+    int getX() {
+        return x;
+    }
+
+    int getY() {
+        return y;
     }
 };
 
