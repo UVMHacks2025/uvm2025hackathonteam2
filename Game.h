@@ -45,6 +45,14 @@ public:
 		*/
     }
 
+    Player getPlayer() {
+        return player;
+    }
+
+    Interface getInterface() {
+        return interface;
+    }
+
     Level getCurrentLevel() {
         return levels[currentLevel];
     }
