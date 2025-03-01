@@ -30,7 +30,12 @@ int main() {
 			cout << "you quit the game"<< endl;
 			break;
 		}
+		Player p = game.getPlayer();
+		cout <<p.getX() << ", "<<p.getY()<<endl;
 		l.movePlayer(dir);
+		p = game.getPlayer();
+		cout <<p.getX() << ", "<<p.getY()<<endl;
+
 		
 	}
 	return 0;

@@ -24,9 +24,9 @@ public:
     vector<Enemy> enemies;
     Player player;
 
-    Level(Player p, int dep) : Level(p, dep, 5, 5, 5, 5) {}
+    Level(Player &p, int dep) : Level(p, dep, 5, 5, 5, 5) {}
 
-    Level(Player p, int dep, int gx, int gy, int wallnum, int enemynum) {
+    Level(Player &p, int dep, int gx, int gy, int wallnum, int enemynum) {
         player = p;
         depth = dep;
         gridX = gx;

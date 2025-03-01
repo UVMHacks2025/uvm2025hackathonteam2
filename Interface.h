@@ -78,7 +78,7 @@ public:
 			
 	}
 	//returns num rounds passed
-	int fight(Player p, Enemy e, Level l) {
+	int fight(Player &p, Enemy &e, Level &l) {
 		vector<string> abilities = p.getAbilities();
 		int rounds = 0;
 		while(p.getHealth()>=0 && !e.is_dead()) {
