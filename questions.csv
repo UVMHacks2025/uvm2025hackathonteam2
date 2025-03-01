@@ -1,3 +1,6 @@
 Question, Multiple Choice, Level, # Answers, Answer..., # Correct answers, Correct answer...
 1!, true, 0, 3, 1, 10, 2, 1, 1
 What is the value of x for x^2 + 2x = 8, true, 1, 4, 1, 2, 3, 6, 1, 2
+what is the best number, true, 0, 4,4,4,4,4,4,4,4,4,4
+limit of 1/x as x -> infinity, true, 2, 3, 0,1,infinity, 1, 0
+limit of x/x as x -> 0, true, 4, 3, 0,1,Does Not Exist, 1, Does Not Exist
