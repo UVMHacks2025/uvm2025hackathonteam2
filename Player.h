@@ -58,7 +58,6 @@ public:
     }
 
     int attack(Enemy* enemy) const {
-    void attack(Enemy* enemy) const {
         int damage = attackDamage;
 
         if (rand() % critChance == 0) {
