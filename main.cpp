@@ -11,7 +11,7 @@ int main() {
 
 	while(game.getPlayer().getHealth()>0){
 		Level l = game.getCurrentLevel();
-		cout << "\033[h"<< endl;
+		cout << "\033[H\033[J";
 		l.printLevel();
 		l.moveEnemies();
 		int d = game.getInterface().promptMoveLoop();
@@ -29,7 +29,6 @@ int main() {
 			cout << "you quit the game"<< endl;
 			break;
 		}
-		cout << dir << endl;
 		l.movePlayer(dir);
 		
 	}
