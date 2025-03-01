@@ -1,7 +1,12 @@
 #ifndef HACK_LEVEL_H
 #define HACK_LEVEL_H
 
-class level {
+class Level {
+private:
+	vector<Enemy> enemies;
+public:
+
+
 
 };
 
