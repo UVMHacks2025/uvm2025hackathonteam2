@@ -25,6 +25,33 @@ private:
 public:
 	Interface() {
 	}
+	int promptMoveLoop(){
+		string ans = "";
+		int dir = -1;
+		cout << "which way do you want to move (w,a,s,d keys): ";
+		cin >> ans;
+		while(ans.size()!=1 || !(ans=="w" || ans=="a" || ans=="s" || ans=="d" || ans=="q")) {
+			cout << "Invalid Input: ";
+			cin >> ans;
+		}
+		if(ans=="w"){
+			dir = NORTH;
+		}
+		if(ans=="a"){
+			dir = WEST;
+		}
+		if(ans=="d"){
+			dir = EAST;
+		}
+		if(ans=="s"){
+			dir = SOUTH;
+		}
+		if(ans == "q"){
+			dir == -1;
+		}
+		return dir;	
+			
+	}
 
 	int promptMovement(){
 		string ans = "";

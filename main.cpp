@@ -14,7 +14,7 @@ int main() {
 		cout << "\033[h"<< endl;
 		l.printLevel();
 		l.moveEnemies();
-		int d = game.getInterface().promptMovement();
+		int d = game.getInterface().promptMoveLoop();
 		string dir = "up";
 		if(d==SOUTH){
 			dir = "down";
@@ -25,6 +25,11 @@ int main() {
 		if(d==WEST){
 			dir = "left";
 		}
+		if(d==-1){
+			cout << "you quit the game"<< endl;
+			break;
+		}
+		cout << dir << endl;
 		l.movePlayer(dir);
 		
 	}
