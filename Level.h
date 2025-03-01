@@ -18,14 +18,33 @@ public:
     int doorY;
     int gridX;
     int gridY;
-    int wallnumber = 5;
-    vector<vector<int>> floorgrid;
+    int wallnumber;
+    int enemynumber;
+    vector<vector<string>> floorgrid;
     vector<Enemy> enemies;
     vector<vector<int>> enemylocs;
     struct Content {
         Enemy enemy;
         Player player;
     };
+
+    Level() {
+        depth = 0;
+        gridX = 5;
+        gridY = 5;
+        wallnumber = 5;
+        enemynumber = 5;
+        doorY = gridY / 2;
+        doorX = gridX - 1;
+    }
+
+    Level(int dep, int gx, int gy, int wallnum, int enemynum) {
+        depth = dep;
+        gridX = gx;
+        gridY = gy;
+        wallnumber = wallnum;
+        enemynumber = enemynum;
+    }
 
     //create a bunch of enemies with attack values based on deepness
     void fillEnemyVector(){
@@ -43,40 +62,89 @@ public:
         }
     }
 
+    //main issues: if an enemy spawns on top of a wall, the wall gets deleted
     void fillGrid() {
         for(int i = 0; i < gridX; i++) {
             for(int j = 0; j < gridY; j++) {
-                floorgrid[i][j] = 0;
+                floorgrid[i][j] = "*";
             }
         }
         for(int i = 0; i < wallnumber; i++) {
-            floorgrid[rand() % gridX][rand() % gridY] = 1;
+            floorgrid[rand() % gridX][rand() % gridY] = "#";
         }
+        for(Enemy e : enemies) {
+            floorgrid[e.x_location][e.y_location] = "e";
+        }
+        floorgrid[doorX][doorY] = ">";
     }
 
-    void movePlayer() {
+    //pass in the input as an argument
+    void movePlayer(string input) {
         //determine which way the player wants to move
         //determine their position
         //check if there's a wall/enemy in the way
         //if there's stuff in the way, print a message
         //if not, move the player
         //moving left
-        if(player.x > 0 && floorgrid[player.x - 1][player.y] == 0) {
-            player.x--;
+        int pX = player.x;
+        int pY = player.y;
+        if(input == "left" && px > 0 && floorgrid[px - 1][pY] == "*") {
+            //pX--;
+            player.move({-1, 0})
         }
         //moving right
-        if(player.x < gridX - 1 && floorgrid[player.x + 1][player.y] == 0) {
-            player.x++;
+        else if(input == "right" && pX < gridX - 1 && floorgrid[pX + 1][pY] == "*") {
+            //pX++;
+            player.move({1, 0})
         }
         //moving up
-        if(player.y > 0 && floorgrid[player.x][player.y - 1] == 0) {
-            player.y--;
+        else if(input == "up" && pY > 0 && floorgrid[pX][pY - 1] == "*") {
+            //pY--;
+            player.move({0, -1})
         }
         //moving down
-        if(player.y < gridY - 1 && floorgrid[player.x][player.y + 1] == 0) {
-            player.y++;
+        else if(input == "down" && pY < gridY - 1 && floorgrid[pX][pY + 1] == "*") {
+            //pY++;
+            player.move({0, 1})
         }
+        else {
+            cout << "You ran into a wall!";
+        }
+        floorgrid[pX][pY] = "*";
+        floorgrid[player.x][player.y] = "@";
 
+    }
+
+    void moveEnemies() {
+        int playerX = player.x;
+        int playerY = player.y;
+        for(Enemy enemy : enemies) {
+            int enemX = enemy.x_location;
+            int enemY = enemy.y_location;
+            if(enemX > 0 && enemX > playerX && floorgrid[enemX - 1][enemY] == "*") {
+                enemy.move({-1, 0});
+            }
+            else if(enemX < gridX && enemX < playerX && floorgrid[enemX + 1][enemY] == "*") {
+                enemy.move({1, 0});
+            }
+            else if(enemY > 0 && enemY > playerY && floorgrid[enemY][enemY - 1] == "*") {
+                enemy.move({0, -1});
+            }
+            else if(enemY < gridY && enemY < playerY && floorgrid[enemX][enemY + 1] == "*") {
+                enemy.move({0, 1});
+            }
+            floorgrid[enemX][enemY] = "*";
+            floorgrid[enemy.x_location][enemy.y_location] = "e";
+        }
+    }
+
+    void printLevel(){
+        for(int i = 0; i < gridY; i++) {
+            for(int j = 0; j < gridX; j++) {
+                cout << floorgrid[j][i];
+            }
+            cout << "\n";
+        }
     }
 
     void checkForDead(){
@@ -99,7 +167,8 @@ public:
     }
 
     void checkDoor() {
-        if(doorX == player.X and doorY == player.Y) {
+        //whatever the player's number is
+        if(floorgrid[doorX][doorY] == "@") {
             //next level function
             enterNextLevel();
         }
