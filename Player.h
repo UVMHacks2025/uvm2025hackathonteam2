@@ -57,14 +57,15 @@ public:
         shieldUp = true;
     }
 
-    int attack(Enemy enemy) const {
+    int attack(Enemy* enemy) const {
+    void attack(Enemy* enemy) const {
         int damage = attackDamage;
 
         if (rand() % critChance == 0) {
             damage *= 2;
         }
 
-        enemy.hit(damage);
+        enemy->hit(damage);
 
         return damage;
     }

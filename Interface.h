@@ -82,9 +82,11 @@ public:
 		vector<string> abilities = p.getAbilities();
 		int rounds = 0;
 		while(p.getHealth()>=0 && !e.is_dead()) {
+		cout << e.get_type() << ": "<<e.health<<"/"<<e.get_max_health()<<endl;
+		cout << "Player: "<<p.getHealth() << "/"<<p.getMaxHealth()<<endl;
 		int n = abilities.size();
 		for(int i = 0; i < abilities.size(); ++i){
-			cout << abilities[i] << "("<<(char)(i+96)<<"), ";
+			cout << abilities[i] << "("<<(char)(i+97)<<"), ";
 		}
 		string ans = "";
 		cin >> ans;
@@ -95,6 +97,7 @@ public:
 		
 		switch((int)ans[0]){
 			case 'a':{
+				l.printLevel();
 				int d = promptMovement();
 				string dir = "up";
 				if(d==SOUTH){
@@ -113,7 +116,7 @@ public:
 				p.shield();
 			}
 			case 'c':{
-				p.attack(e);
+				p.attack(&e);
 			}
 		}
 			++rounds;
