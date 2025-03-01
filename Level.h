@@ -81,22 +81,22 @@ public:
         int pY = player.getY();
         if(input == "left" && pX > 0 && floorgrid[pX - 1][pY] == "*") {
             //pX--;
-            player.move({-1, 0});
+            player.move(-1, 0);
         }
         //moving right
         else if(input == "right" && pX < gridX - 1 && floorgrid[pX + 1][pY] == "*") {
             //pX++;
-            player.move({1, 0});
+            player.move(1, 0);
         }
         //moving up
         else if(input == "up" && pY > 0 && floorgrid[pX][pY - 1] == "*") {
             //pY--;
-            player.move({0, -1});
+            player.move(0, -1);
         }
         //moving down
         else if(input == "down" && pY < gridY - 1 && floorgrid[pX][pY + 1] == "*") {
             //pY++;
-            player.move({0, 1});
+            player.move(0, 1);
         }
         else {
             cout << "You ran into a wall!";
