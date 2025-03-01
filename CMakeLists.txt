@@ -4,3 +4,7 @@ project(hack)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(hack main.cpp)
+
+add_executable(hack testingAtticus.cpp)
+add_executable(hack testingEllie.cpp)
+add_executable(Player.h)
