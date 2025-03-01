@@ -32,7 +32,12 @@ public:
         getQuestionsFromFile("questions.csv", global_questions);
 
         for (int i = 0; i < global_questions.size(); i++) {
-            interface.ask(global_questions[i]);
+            bool result = interface.ask(global_questions[i]);
+            if (result) {
+                cout << "Correct!" << endl;
+            } else {
+                cout << "Wrong!" << endl;
+            }
         }
     }
 
