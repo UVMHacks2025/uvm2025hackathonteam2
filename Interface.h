@@ -20,7 +20,7 @@ public:
 	void askQuestion(){
 		//prompt
 		cout << question.getPrompt() << endl;
-		bool isMultipleChoice = question.isMcq();
+		bool isMultipleChoice = question.getIsMcq();
 		if(isMultipleChoice){
 			string ans = "";
 			int num = question.getNumAnswers();
