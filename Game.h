@@ -102,6 +102,9 @@ public:
                 //create Question from those
                 //add Question to questions vector
                 questions.push_back(Question(prompt, multChoice, answers));
+
+                answers.clear();
+                correctAnswers.clear();
             }
 
             fileIn.close();
