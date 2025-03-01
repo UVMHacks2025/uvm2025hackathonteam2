@@ -10,9 +10,8 @@ int main() {
 	q.addAnswer("a",true);
 	q.addAnswer("b",false);
 	Interface test = Interface();
-	test.setQuestion(q);
 
-	test.ask();
+	test.ask(q);
 	cout << "Running" << endl;	
 	return 0;
 }

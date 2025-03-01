@@ -4,9 +4,9 @@
 
 #ifndef ENEMY_H
 #define ENEMY_H
-#include "question.h"
+#include "Question.h"
 #include <iostream>
-#include "player.h"
+#include "Player.h"
 #include <random>
 
 class Enemy {
@@ -32,6 +32,7 @@ class Enemy {
           x_location = x_location_start;
           y_location = y_location_start;
         }
+
         int randomize_attack(){
           int attack_val = rand()%3 + 1 + attack_mod;
           if (rand() % crit_chance == 0){
@@ -40,14 +41,14 @@ class Enemy {
         }
 
         int attack1(int attack_damage){
-            return player.damage(attack_damage);
+            return (attack_damage);
         }
         int attack2(int attack_damage){
-            return player.damage(attack_damage);
+            return (attack_damage);
         }
         int attack3(int attack_damage){
             std::cout << "CRITICAL HIT" << std::endl;
-            return player.damage(attack_damage);
+            return (attack_damage);
         }
         void move(vector<int> pos){
             x_location = x_location+pos[0];
@@ -76,7 +77,7 @@ class Enemy {
           return health;
         }
         string return_image(){
-
+			return "";
         }
 
 

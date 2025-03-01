@@ -13,6 +13,8 @@ using namespace std;
 class Game {
 private:
     //instance variables
+	vector<Level> levels;
+	Player player;
     int levelsWon;
     int score;
 public:

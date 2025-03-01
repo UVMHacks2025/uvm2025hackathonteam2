@@ -2,11 +2,12 @@
 #define HACK_INTERFACE_H
 #include <iostream>
 #include "Question.h"
+#include "Player.h"
+#include "Enemy.h"
 using namespace std;
 
 class Interface {
 private:
-	Question question;
 	long timelimit;
 	bool isGoodAnswer(string s,int n) {
 		int c = (int)s[0];
@@ -17,10 +18,12 @@ private:
 	}
 public:
 	Interface() {
-		question = Question();
+	}
+	int fight(Player p, Enemy e) {
+		return 0;	
 	}
 
-	bool ask(){
+	bool ask(Question question){
 		//prompt
 		cout << question.getPrompt() << endl;
 		bool isMultipleChoice = question.getIsMcq();
@@ -31,24 +34,21 @@ public:
 			cin >> ans;	
 
 			while(ans.size() !=1 || !isGoodAnswer(ans,num)) {
+				cout << "Invalid input, try again: ";
 				cin >> ans;
 			} 
 			return question.isCorrect((int)(num&(~96)));
 
 		}
+		else {
+		}
 
 		return false;
 
 	}
-	bool ask(long time) {
-		return ask();	
+	bool ask(Question question, long time) {
+		return ask(question);	
 	}
 
-	Question getQuestion() {
-		return question;
-	}
-	void setQuestion(Question q) {
-		question = q;
-	}
 };
 #endif
