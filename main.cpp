@@ -24,7 +24,7 @@ int main() {
 			dir = "left";
 		}
 		l.movePlayer(dir);
-		p = game.getPlayer().
+		Player p = game.getPlayer();
 		
 	}
 	return 0;
