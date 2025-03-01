@@ -16,8 +16,8 @@ using namespace std;
 class Game {
 private:
     //instance variables
-	// vector<Level> levels;
-	// Player player;
+    // vector<Level> levels;
+    // Player player;
 
     vector<Question> global_questions;
 
@@ -26,9 +26,11 @@ private:
 public:
     //constructor
     Game() : levelsWon(0), score(0) {
-		getQuestionsFromFile("questions.csv", global_questions);
+        getQuestionsFromFile("questions.csv", global_questions);
 
-		cout << global_questions[0].getPrompt() << endl;
+        for (int i = 0; i < global_questions.size(); i++) {
+            cout << global_questions[i].getPrompt() << endl;
+        }
     }
 
     //method: get questions from csv file
@@ -36,60 +38,67 @@ public:
         ifstream fileIn;
         fileIn.open(filename);
         if (fileIn) {
-        	string header;
-        	getline(fileIn, header);
+            string header;
+            getline(fileIn, header);
 
-          	string prompt, level, tempAnswer, tempCorrectAnswer;
-          	int numAnswers, numCorrectAnswers;
-          	bool multChoice;
-          	vector<answer> answers;
-          	vector<string> correctAnswers;
-        	char comma;
+            string prompt, level, tempAnswer, tempCorrectAnswer;
+            int numAnswers, numCorrectAnswers;
+            bool multChoice;
+            vector<answer> answers;
+            vector<string> correctAnswers;
+            char comma;
 
-          	while (fileIn && fileIn.peek() != EOF) {
-            	//take prompt
-            	getline(fileIn, prompt, ',');
+            while (fileIn && fileIn.peek() != EOF) {
+                //take prompt
+                getline(fileIn, prompt, ',');
 
-            	//get multChoice
-				fileIn >> multChoice >> comma;
+                //get multChoice
+                string choiceIn;
+                getline(fileIn, choiceIn, ',');
+                multChoice = choiceIn == "true" || choiceIn == " true";
 
-            	//get level
-            	getline(fileIn, level, ',');
+                //get level
+                getline(fileIn, level, ',');
 
-            	//read num answers and use for loop to get all the answers, set correct to false for all
-				fileIn >> numAnswers >> comma;
-            	for (int i = 0; i < numAnswers; i++) {
-              		getline(fileIn, tempAnswer, ',');
-              		answer ans;
-              		ans.choice = tempAnswer;
-              		ans.correct = false;
-              		answers.push_back(ans);
-            	}
+                //read num answers and use for loop to get all the answers, set correct to false for all
+                string numIn;
+                getline(fileIn, numIn, ',');
+                numAnswers = stoi(numIn);
+                for (int i = 0; i < numAnswers; i++) {
+                    getline(fileIn, tempAnswer, ',');
+                    answer ans;
+                    ans.choice = tempAnswer;
+                    ans.correct = false;
+                    answers.push_back(ans);
+                }
 
-            	//read num correct answers and use for loop to get them all, put in second vector
-            	fileIn >> numCorrectAnswers >> comma;
-            	for (int i = 0; i < numCorrectAnswers; i++) {
-              		getline(fileIn, tempCorrectAnswer, ',');
-              		correctAnswers.push_back(tempCorrectAnswer);
-            	}
+                //read num correct answers and use for loop to get them all, put in second vector
+                string numCorrectIn;
+                getline(fileIn, numCorrectIn, ',');
+                numCorrectAnswers = stoi(numCorrectIn);
+                for (int i = 0; i < numCorrectAnswers; i++) {
+                    getline(fileIn, tempCorrectAnswer, ',');
+                    correctAnswers.push_back(tempCorrectAnswer);
+                }
 
-           		//iterate through for loops and change all correct answers to true
-            	for (int i = 0; i < correctAnswers.size(); i++) {
-              		for (int j = 0; j < answers.size(); j++) {
-                		if (correctAnswers[i] == answers[j].choice) {
-                   			answers[j].correct = true;
-                		}
-              		}
-            	}
+                //iterate through for loops and change all correct answers to true
+                for (int i = 0; i < correctAnswers.size(); i++) {
+                    for (int j = 0; j < answers.size(); j++) {
+                        if (correctAnswers[i] == answers[j].choice) {
+                            answers[j].correct = true;
+                        }
+                    }
+                }
 
-            	//create Question from those
-				//add Question to questions vector
-				questions.push_back(Question(prompt, multChoice, answers));
-          	}
+                //create Question from those
+                //add Question to questions vector
+                questions.push_back(Question(prompt, multChoice, answers));
+            }
 
-        	fileIn.close();
+            fileIn.close();
         }
     }
+
     //other stuff I assume
 
     // create levels
