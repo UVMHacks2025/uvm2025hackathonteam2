@@ -23,7 +23,8 @@ int old() {
 	test.ask(q,1);
 	Player p = Player();
 	Enemy e = Enemy(100,1,0,0);
-	test.fight(p,e);
+	Level l(p,0);
+	test.fight(p,e,l);
 
 	cout << "Running" << endl;
 	return 0;
