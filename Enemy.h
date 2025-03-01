@@ -7,6 +7,7 @@
 #include "question.h"
 #include <iostream>
 #include "player.h"
+#include <random>
 
 class Enemy {
     private:
@@ -15,14 +16,55 @@ class Enemy {
         bool dead;
         int x_location;
         int y_location;
+        int attack_mod;
+        int danger_level;
+        int crit_chance;
 
-        Enemy(int starting_health){
+        Enemy(int starting_health, int enemy_attack_mod){
           health = starting_health;
           dead = false;
+          attack_mod = enemy_attack_mod;
+          crit_chance = 3;
         }
-        int attack(){
-          player.damage();
+        int randomize_attack(){
+          int attack_val = rand()%3 + 1 + attack_mod;
+          if (rand() % crit_chance == 0){
+              return attack3(attack_val)*2;
+          };
         }
+
+        int attack1(int attack_damage){
+            return player.damage(attack_damage);
+        }
+        int attack2(int attack_damage){
+            return player.damage(attack_damage);
+        }
+        int attack3(int attack_damage){
+            std::cout << "CRITICAL HIT" << std::endl;
+            return player.damage(attack_damage);
+        }
+        void move(vector<int> pos){
+            x_location = x_location+pos[0];
+            y_location = y_location+pos[1];
+        }
+        vector<int> get_location(){
+          vector<int> location;
+          location.push_back(x_location);
+          location.push_back(y_location);
+          return location;
+        }
+        bool is_dead(){
+          return dead;
+        }
+        bool hit(int damage){
+          health -= damage;
+          if(health <= 0){
+            dead = true;
+          }
+          return dead;
+        }
+
+
 
 
 

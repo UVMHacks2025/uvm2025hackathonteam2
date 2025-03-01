@@ -25,6 +25,12 @@ public:
         answers.clear();
     };
 
+    Question(string prompt, bool isMcq, vector<answer> answers) {
+        this->prompt = prompt;
+        this->isMcq = isMcq;
+        this->answers = answers;
+    }
+
     //Getters
     string getPrompt() const {
         return prompt;
