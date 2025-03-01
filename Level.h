@@ -140,9 +140,9 @@ public:
     }
 
     Enemy* playerIsOnEnemy() {
-        for(Enemy e : enemies) {
-            if(e.x_location == player.getX() && e.y_location == player.getY()) {
-                return &e;
+        for(int i = 0; i < enemies.size(); i++) {
+            if(enemies[i].x_location == player.getX() && enemies[i].y_location == player.getY()) {
+                return &enemies[i];
             }
         }
         return nullptr;
