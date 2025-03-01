@@ -49,15 +49,39 @@ public:
 		return dir;	
 			
 	}
+	//returns num rounds passed
 	int fight(Player p, Enemy e) {
 		vector<string> abilities = p.getAbilities();
+		int rounds = 0;
+		while(p.getHealth()>=0 && !e.is_dead()) {
+		int n = abilities.size();
 		for(int i = 0; i < abilities.size(); ++i){
-			cout << abilities[i] << ", ";
+			cout << abilities[i] << "("<<(char)(i+96)<<"), ";
+		}
+		string ans = "";
+		cin >> ans;
+		while(ans.size() !=1 || !isGoodAnswer(ans,n)) {
+				cout << "Invalid input, try again: ";
+				cin >> ans;
+		}
+		
+		switch((int)ans[0]){
+			case 'a':{
+				p.move();
+				return rounds;
+			}
+			case 'b':{
+				p.shield();
+			}
+			case 'c':{
+				p.attack(e);
+			}
+		}
+			++rounds;
 		}
 
 
-
-		return 0;	
+		return rounds;	
 	}
 	
 
@@ -85,6 +109,9 @@ public:
 
 	}
 	bool ask(Question question, long timeSeconds) {
+		if(timeSeconds < 0){
+			ask(question);
+		}
 		auto start = chrono::steady_clock::now();
 
 		bool out = ask(question);
