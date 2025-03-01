@@ -8,6 +8,12 @@ using namespace std;
 int main() {
 	Game game = Game();
 
+	while(true){
+		Level l = game.getCurrentLevel();
+		l.printLevel();
+		l.moveEnemies();
+		
+	}
 	return 0;
 }
 
