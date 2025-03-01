@@ -66,6 +66,7 @@ public:
             floorgrid[e.x_location][e.y_location] = "e";
         }
         floorgrid[doorX][doorY] = ">";
+        floorgrid[player.getX()][player.getY()] = "@";
     }
 
     //pass in the input as an argument
@@ -129,6 +130,7 @@ public:
     }
 
     void printLevel(){
+        cout << "\n";
         for(int i = 0; i < gridY; i++) {
             for(int j = 0; j < gridX; j++) {
                 cout << floorgrid[j][i];
