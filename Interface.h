@@ -4,10 +4,17 @@
 #include "Question.h"
 #include "Player.h"
 #include "Enemy.h"
+#include <thread>
 using namespace std;
-
+#define NORTH 0
+#define EAST 1
+#define SOUTH 2
+#define WEST 3
 class Interface {
 private:
+	Question q;
+	bool threadDone = false;
+	bool threadOutput = false;
 	long timelimit;
 	bool isGoodAnswer(string s,int n) {
 		int c = (int)s[0];
@@ -19,8 +26,43 @@ private:
 public:
 	Interface() {
 	}
+
+	int promptMovement(){
+		string ans = "";
+		int dir = -1;
+		cout << "which way do you want to move (w,a,s,d keys): ";
+		cin >> ans;
+		while(ans.size()!=1 || !(ans=="w" || ans=="a" || ans=="s" || ans=="d")) {
+			cout << "Invalid Input: ";
+			cin >> ans;
+		}
+		if(ans=="w"){
+			dir = NORTH;
+		}
+		if(ans=="a"){
+			dir = WEST;
+		}
+		if(ans=="d"){
+			dir = EAST;
+		}
+		if(ans=="s"){
+			dir = SOUTH;
+		}
+		return dir;	
+			
+	}
 	int fight(Player p, Enemy e) {
+		vector<ability> abilities = p.getAbilities();
+		for(int i = 0; i < abilities.size(); ++i){
+			cout << abilities[i].name << ", ";
+		}
 		return 0;	
+	}
+	void askQuestion(){
+		threadDone = false;
+		threadOutput = false;
+		threadOutput = ask(q);
+		threadDone = true;
 	}
 
 	bool ask(Question question){
@@ -46,8 +88,20 @@ public:
 		return false;
 
 	}
-	bool ask(Question question, long time) {
-		return ask(question);	
+	bool ask(Question question, long timeSeconds) {
+		auto start = chrono::steady_clock::now();
+
+		thread t(askQuestion);
+		while((long)chrono::duration_cast<chrono::seconds>(chrono::steady_clock::now()-start).count() < timeSeconds && !threadDone) {
+			
+		}
+		bool f = threadOutput;
+		t.join();
+
+
+
+		return f;
+	   		
 	}
 
 };

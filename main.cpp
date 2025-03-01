@@ -11,7 +11,11 @@ int main() {
 	q.addAnswer("b",false);
 	Interface test = Interface();
 
+	
 	test.ask(q);
+	Player p = Player();
+	Enemy e = Enemy(100,1,0,0);
+	test.fight(p,e);
 	cout << "Running" << endl;	
 	return 0;
 }
