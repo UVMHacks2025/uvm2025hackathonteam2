@@ -51,9 +51,8 @@ public:
 			
 	}
 	//returns num rounds passed
-	int fight(Player p, Enemy e, Level l) {
+	int fight(Player p, Enemy e) {
 		vector<string> abilities = p.getAbilities();
-		cout << 
 		int rounds = 0;
 		while(p.getHealth()>=0 && !e.is_dead()) {
 		int n = abilities.size();
@@ -96,7 +95,7 @@ public:
 			int num = question.getNumAnswers();
 			cout << "select answer (a-"<< (char)(num+96) << "):" << endl;
 			for(int i = 0; i < num; ++i) {
-				cout << "("<<(char)(i+96)<<")" << question.getAnswer(i) << endl;
+				cout << "("<<(char)(i+96)<<") " << question.getAnswer(i) << endl;
 			}
 			cin >> ans;	
 
