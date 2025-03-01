@@ -1,9 +1,7 @@
-#include "interface.h"
+#include "Interface.h"
 #include <iostream>
 
-#include "question.h"
 using namespace std;
-//mac was here
 
 int main() {
 	Interface test;
