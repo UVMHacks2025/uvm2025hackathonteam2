@@ -58,11 +58,7 @@ public:
 
     //main issues: if an enemy spawns on top of a wall, the wall gets deleted
     void fillGrid() {
-        for(int i = 0; i < gridX; i++) {
-            for(int j = 0; j < gridY; j++) {
-                floorgrid[i][j] = "*";
-            }
-        }
+        floorgrid = vector(gridX, vector<string>(gridY, "*"));
         for(int i = 0; i < wallnumber; i++) {
             floorgrid[rand() % gridX][rand() % gridY] = "#";
         }
