@@ -16,6 +16,10 @@ public:
     void damage(int damage) {
       health -= damage;
     }
+
+    void add_experience(int experience) {
+      this->experience += experience;
+    }
 };
 
 #endif //PLAYER_H
