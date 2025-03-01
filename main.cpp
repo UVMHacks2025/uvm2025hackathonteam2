@@ -13,6 +13,7 @@ int main() {
 		Level l = game.getCurrentLevel();
 		cout << "\033[H\033[J";
 		l.printLevel();
+		l.checkForDead();
 		l.moveEnemies();
 		int d = game.getInterface().promptMoveLoop();
 		string dir = "up";
