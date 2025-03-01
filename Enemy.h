@@ -19,12 +19,18 @@ class Enemy {
         int attack_mod;
         int danger_level;
         int crit_chance;
+        int experience;
+        string type;
 
-        Enemy(int starting_health, int enemy_attack_mod){
+
+        Enemy(int starting_health, int enemy_attack_mod, int x_location_start, int y_location_start){
           health = starting_health;
           dead = false;
           attack_mod = enemy_attack_mod;
           crit_chance = 3;
+          experience = 2;
+          x_location = x_location_start;
+          y_location = y_location_start;
         }
         int randomize_attack(){
           int attack_val = rand()%3 + 1 + attack_mod;
@@ -62,6 +68,15 @@ class Enemy {
             dead = true;
           }
           return dead;
+        }
+        string get_type(){
+          return type;
+        }
+        int get_health(){
+          return health;
+        }
+        string return_image(){
+
         }
 
 
