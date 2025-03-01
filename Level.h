@@ -79,22 +79,22 @@ public:
         //moving left
         int pX = player.getX();
         int pY = player.getY();
-        if(input == "left" && pX > 0 && floorgrid[pX - 1][pY] == "*") {
+        if(input == "left" && pX > 0 && floorgrid[pX - 1][pY] != "#") {
             //pX--;
             player.move(-1, 0);
         }
         //moving right
-        else if(input == "right" && pX < gridX - 1 && floorgrid[pX + 1][pY] == "*") {
+        else if(input == "right" && pX < gridX - 1 && floorgrid[pX + 1][pY] != "#") {
             //pX++;
             player.move(1, 0);
         }
         //moving up
-        else if(input == "up" && pY > 0 && floorgrid[pX][pY - 1] == "*") {
+        else if(input == "up" && pY > 0 && floorgrid[pX][pY - 1] != "#") {
             //pY--;
             player.move(0, -1);
         }
         //moving down
-        else if(input == "down" && pY < gridY - 1 && floorgrid[pX][pY + 1] == "*") {
+        else if(input == "down" && pY < gridY - 1 && floorgrid[pX][pY + 1] != "#") {
             //pY++;
             player.move(0, 1);
         }
@@ -139,6 +139,14 @@ public:
         }
     }
 
+    Enemy* playerIsOnEnemy() {
+        for(Enemy e : enemies) {
+            if(e.x_location == player.getX() && e.y_location == player.getY()) {
+                return &e;
+            }
+        }
+        return nullptr;
+    }
 
 
     void checkForDead(){
