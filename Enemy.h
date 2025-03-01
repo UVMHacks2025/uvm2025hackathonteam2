@@ -20,7 +20,7 @@ class Enemy {
         int danger_level;
         int crit_chance;
         int experience;
-        string type;
+        int type;
 
 
         Enemy(int starting_health, int enemy_attack_mod, int x_location_start, int y_location_start){
@@ -34,17 +34,24 @@ class Enemy {
         }
 
         int randomize_attack(){
-          int attack_val = rand()%3 + 1 + attack_mod;
+          int attack_val = rand()%3 + attack_mod;
           if (rand() % crit_chance == 0){
               return attack3(attack_val)*2;
-          };
+          }
+            if (rand() % crit_chance == 1){
+                return attack1(attack_val);
+            }
+            if (rand() % crit_chance == 2){
+                return attack2(attack_val);
+            }
+
         }
 
         int attack1(int attack_damage){
-            return (attack_damage);
+            return (attack_damage) + 1;
         }
         int attack2(int attack_damage){
-            return (attack_damage);
+            return (attack_damage) + 2;
         }
         int attack3(int attack_damage){
             std::cout << "CRITICAL HIT" << std::endl;
@@ -71,19 +78,29 @@ class Enemy {
           return dead;
         }
         string get_type(){
-          return type;
+            string string_type = "ITS BROKEN";
+            if (type == 0) {
+                string_type = "goat";
+            }
+            if (type == 1) {
+                string_type = "sheep";
+            }
+            if (type == 2) {
+                string_type = "bat";
+            }
+          return string_type;
         }
         int get_health(){
           return health;
         }
         string return_image(){
-			return "";
+            if (type == 0)
+			    return "BAAAAAAAAAA";
+            if (type == 1)
+                return "FLUFFFFFFFF";
+            if (type == 2)
+                return "Not Quite a Vampire";
         }
-
-
-
-
-
 
 };
 

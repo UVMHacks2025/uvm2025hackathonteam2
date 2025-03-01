@@ -6,6 +6,8 @@
 #include <fstream>
 #include <iostream>
 #include <iomanip>
+
+#include "Level.h"
 #include "Question.h"
 
 using namespace std;
@@ -37,20 +39,21 @@ public:
           bool multChoice;
           vector<answer> answers;
           vector<string> correctAnswers;
+          char comma;
 
           while (fileIn && fileIn.peek() != EOF) {
             //take prompt
             getline(fileIn, prompt, ',');
 
             //get multChoice
-            getline(fileIn, multChoice, ',');
+			fileIn >> multChoice >> comma;
 
             //get level
             getline(fileIn, level, ',');
 
             //read num answers and use for loop to get all the answers, set correct to false for all
-            getline(fileIn, numAnswers, ',');
-            for (int i = 0; i < numAnswers, i++) {
+			fileIn >> numAnswers >> comma;
+            for (int i = 0; i < numAnswers; i++) {
               getline(fileIn, tempAnswer, ',');
               answer ans;
               ans.choice = tempAnswer;
@@ -59,7 +62,7 @@ public:
             }
 
             //read num correct answers and use for loop to get them all, put in second vector
-            getline(fileIn, numCorrectAnswers, ',');
+            fileIn >> numCorrectAnswers >> comma;
             for (int i = 0; i < numCorrectAnswers; i++) {
               getline(fileIn, tempCorrectAnswer, ',');
               correctAnswers.push_back(tempCorrectAnswer);
@@ -67,9 +70,9 @@ public:
 
             //iterate through for loops and change all correct answers to true
             for (int i = 0; i < correctAnswers.size(); i++) {
-              for (int i = 0; i < answers.size(); i++) {
-                if (correctAnswers[i].equals(answers[i].choice) {
-                	answers[i].correct = true;
+              for (int j = 0; j < answers.size(); j++) {
+                if (correctAnswers[i] == answers[j].choice) {
+                   answers[j].correct = true;
                 }
               }
             }
@@ -82,6 +85,17 @@ public:
         }
     }
     //other stuff I assume
+
+    // create levels
+
+
+    //create player
+
+
+
+    // create game loop
+
+    // win by getting to end (in future, could make endless)
 };
 
 #endif //HACK_GAME_H
