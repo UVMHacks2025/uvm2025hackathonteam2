@@ -27,9 +27,9 @@ class Enemy {
           crit_chance = 3;
         }
         int randomize_attack(){
-          int attack_val = rand()%3 + 1;
+          int attack_val = rand()%3 + 1 + attack_mod;
           if (rand() % crit_chance == 0){
-              return attack3(attack_val);
+              return attack3(attack_val)*2;
           };
         }
 
@@ -40,13 +40,30 @@ class Enemy {
             return player.damage(attack_damage);
         }
         int attack3(int attack_damage){
-            cout << "CRITICAL HIT" << endl;
+            std::cout << "CRITICAL HIT" << std::endl;
             return player.damage(attack_damage);
         }
         void move(vector<int> pos){
             x_location = x_location+pos[0];
             y_location = y_location+pos[1];
         }
+        vector<int> get_location(){
+          vector<int> location;
+          location.push_back(x_location);
+          location.push_back(y_location);
+          return location;
+        }
+        bool is_dead(){
+          return dead;
+        }
+        bool hit(int damage){
+          health -= damage;
+          if(health <= 0){
+            dead = true;
+          }
+          return dead;
+        }
+
 
 
 
