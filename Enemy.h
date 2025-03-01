@@ -11,6 +11,7 @@ class Enemy {
     private:
     public:
         int health;
+        int max_health;
         bool dead;
         int x_location;
         int y_location;
@@ -21,6 +22,7 @@ class Enemy {
 
         Enemy(int starting_health, int enemy_attack_mod, int x_location_start, int y_location_start){
             health = starting_health;
+            max_health = starting_health;
             dead = false;
             attack_mod = enemy_attack_mod;
             crit_chance = 3;
@@ -100,6 +102,10 @@ class Enemy {
 
         int get_health(){
           return health;
+        }
+
+        int get_max_health(){
+            return max_health;
         }
 
         string return_image(){

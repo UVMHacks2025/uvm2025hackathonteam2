@@ -11,6 +11,7 @@ using namespace std;
 class Player {
 private:
     int health;
+    int maxHealth;
     int experience;
     bool shieldUp;
     int attackDamage;
@@ -22,11 +23,12 @@ private:
     void levelUp() {
         cout << "Level up!!! Now level " << getLevel() << endl;
         health += 2;
+        maxHealth += 2;
         attackDamage += 1;
     }
 
 public:
-    Player() : health(10), experience(0), shieldUp(false), attackDamage(1), critChance(5), x(0), y(0) {};
+    Player() : health(10), maxHealth(10), experience(0), shieldUp(false), attackDamage(1), critChance(5), x(0), y(0) {};
 
     void damage(const int damage) {
         if (shieldUp) {
@@ -71,6 +73,10 @@ public:
 
     int getHealth() const {
         return health;
+    }
+
+    int getMaxHealth() const {
+        return maxHealth;
     }
 
     int getExperience() const {
