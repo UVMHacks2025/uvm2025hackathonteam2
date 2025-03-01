@@ -6,8 +6,6 @@
 #define ENEMY_H
 #include "Question.h"
 #include <iostream>
-#include "Player.h"
-#include <random>
 
 class Enemy {
     private:
@@ -17,20 +15,20 @@ class Enemy {
         int x_location;
         int y_location;
         int attack_mod;
-        int danger_level;
         int crit_chance;
         int experience;
         int type;
 
-
         Enemy(int starting_health, int enemy_attack_mod, int x_location_start, int y_location_start){
-          health = starting_health;
-          dead = false;
-          attack_mod = enemy_attack_mod;
-          crit_chance = 3;
-          experience = 2;
-          x_location = x_location_start;
-          y_location = y_location_start;
+            health = starting_health;
+            dead = false;
+            attack_mod = enemy_attack_mod;
+            crit_chance = 3;
+            experience = 2;
+            x_location = x_location_start;
+            y_location = y_location_start;
+
+            type = rand() % 3;
         }
 
         int randomize_attack(){

@@ -7,7 +7,7 @@
 #include <iostream>
 #include <iomanip>
 
-//#include "Level.h"
+#include "Level.h"
 #include "Interface.h"
 #include "Player.h"
 #include "Question.h"
@@ -17,11 +17,9 @@ using namespace std;
 class Game {
 private:
     //instance variables
-    // vector<Level> levels;
     Player player;
-
+    vector<Level> levels;
     Interface interface;
-
     vector<Question> global_questions;
 
     int levelsWon;
@@ -29,8 +27,11 @@ private:
 public:
     //constructor
     Game() : levelsWon(0), score(0) {
-        getQuestionsFromFile("questions.csv", global_questions);
+        for (int i = 0; i < 5; i++) {
+            levels.push_back(Level(player, i));
+        }
 
+        getQuestionsFromFile("questions.csv", global_questions);
         for (int i = 0; i < global_questions.size(); i++) {
             bool result = interface.ask(global_questions[i]);
             if (result) {
@@ -106,16 +107,6 @@ public:
             fileIn.close();
         }
     }
-
-    //other stuff I assume
-
-    // create levels
-
-    // create player
-
-    // create game loop
-
-    // win by getting to end (in future, could make endless)
 };
 
 #endif //HACK_GAME_H
