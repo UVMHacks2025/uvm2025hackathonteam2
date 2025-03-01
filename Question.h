@@ -44,6 +44,9 @@ public:
     int getNumAnswers() const {
         return answers.size();
     }
+    string getAnswer(int index) const {
+        return answers[index].choice;
+    }
 
     //Setters
     void setPrompt(const string &prompt) {
