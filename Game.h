@@ -45,16 +45,16 @@ public:
 		*/
     }
 
-    *Player getPlayer() {
-        return player;
+    Player* getPlayer() {
+        return &player;
     }
 
-    *Interface getInterface() {
-        return interface;
+    Interface* getInterface() {
+        return &interface;
     }
 
-    *Level getCurrentLevel() {
-        return levels[currentLevel];
+    Level* getCurrentLevel() {
+        return &levels[currentLevel];
     }
 
     //method: get questions from csv file

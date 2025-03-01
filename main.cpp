@@ -9,13 +9,13 @@ int main() {
 	cout << "\033[H\033[J";
 	Game game = Game();
 
-	while(game.getPlayer().getHealth()>0){
+	while(game.getPlayer()->getHealth()>0){
 		Level* l = game.getCurrentLevel();
 		cout << "\033[H";
 		l->printLevel();
 		l->checkForDead();
 		l->moveEnemies();
-		int d = game.getInterface().promptMoveLoop();
+		int d = game.getInterface()->promptMoveLoop();
 		string dir = "up";
 		if(d==SOUTH){
 			dir = "down";
