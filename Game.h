@@ -33,6 +33,7 @@ public:
         }
 
         getQuestionsFromFile("questions.csv", global_questions);
+		/*
         for (int i = 0; i < global_questions.size(); i++) {
             bool result = interface.ask(global_questions[i]);
             if (result) {
@@ -41,6 +42,7 @@ public:
                 cout << "Wrong!" << endl;
             }
         }
+		*/
     }
 
     Level getCurrentLevel() {

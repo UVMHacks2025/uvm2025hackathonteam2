@@ -12,6 +12,19 @@ int main() {
 		Level l = game.getCurrentLevel();
 		l.printLevel();
 		l.moveEnemies();
+		int d = game.getInterface().promptMovement();
+		string dir = "up";
+		if(d==SOUTH){
+			dir = "down";
+		}
+		if(d==EAST){
+			dir = "right";
+		}
+		if(d==WEST){
+			dir = "left";
+		}
+		l.movePlayer(dir);
+		p = game.getPlayer().
 		
 	}
 	return 0;
