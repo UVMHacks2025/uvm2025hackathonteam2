@@ -11,7 +11,12 @@ int main() {
 
 	while(game.getPlayer()->getHealth()>0){
 		Level* l = game.getCurrentLevel();
-		cout << "\033[H";
+		Interface* i = game.getInterface();
+		Player* p = game.getPlayer();
+		cout << "\033[H\033[J";
+		if(l->playerIsOnEnemy()!=nullptr){
+			i->fight(*p,*l->playerIsOnEnemy(),*l);	
+		}
 		l->printLevel();
 		l->checkForDead();
 		l->moveEnemies();
@@ -30,10 +35,7 @@ int main() {
 			cout << "you quit the game"<< endl;
 			break;
 		}
-		Player* p = game.getPlayer();
-		cout <<p->getX() << ", "<<p->getY()<<endl;
 		l->movePlayer(dir);
-		cout <<p->getX() << ", "<<p->getY()<<endl;
 
 		
 	}
