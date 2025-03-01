@@ -14,21 +14,31 @@ public:
 
     int depth;
     int MAX_DEPTH = 5;
+    //door coordinates
     int doorX;
     int doorY;
+    //dimensions of the floor
     int gridX;
     int gridY;
+    //number of walls (obstacles
     int wallnumber;
+    //number of enemies
     int enemynumber;
+    //stores the location of everything on the floor
     vector<vector<string>> floorgrid;
     vector<Enemy> enemies;
-    vector<vector<int>> enemylocs;
+    
+    Player player;
+    
+    //do we need this?
+    /**
     struct Content {
         Enemy enemy;
         Player player;
     };
+    */
 
-    Level() {
+    Level(Player p) {
         depth = 0;
         gridX = 5;
         gridY = 5;
@@ -36,20 +46,24 @@ public:
         enemynumber = 5;
         doorY = gridY / 2;
         doorX = gridX - 1;
+        player = p;
     }
 
-    Level(int dep, int gx, int gy, int wallnum, int enemynum) {
+    Level(Player p, int dep, int gx, int gy, int wallnum, int enemynum) {
+        player = p;
         depth = dep;
         gridX = gx;
         gridY = gy;
         wallnumber = wallnum;
         enemynumber = enemynum;
+        doorY = gridY / 2;
+        doorX = gridX - 1;
     }
 
-    //create a bunch of enemies with attack values based on deepness
+    //create a bunch of enemies with attack values based on depth
     void fillEnemyVector(){
         for(int i = 0; i < 5; i++) {
-            //using deepness for the attack mod
+            //using depth for the attack mod
             Enemy newEnemy = Enemy(1, depth, rand() % gridX, rand() % gridY);
             for(int j = 0; j < enemies.size(); j++) {
                 if(enemies[j].x_location == newEnemy.x_location && enemies[j].y_location == newEnemy.y_location) {
@@ -79,6 +93,8 @@ public:
     }
 
     //pass in the input as an argument
+    //main issue: currently, the player can't use the door
+    //but that might be better done in a different file
     void movePlayer(string input) {
         //determine which way the player wants to move
         //determine their position
@@ -86,38 +102,39 @@ public:
         //if there's stuff in the way, print a message
         //if not, move the player
         //moving left
-        int pX = player.x;
-        int pY = player.y;
-        if(input == "left" && px > 0 && floorgrid[px - 1][pY] == "*") {
+        int pX = player.getX();
+        int pY = player.getY();
+        if(input == "left" && pX > 0 && floorgrid[pX - 1][pY] == "*") {
             //pX--;
-            player.move({-1, 0})
+            player.move({-1, 0});
         }
         //moving right
         else if(input == "right" && pX < gridX - 1 && floorgrid[pX + 1][pY] == "*") {
             //pX++;
-            player.move({1, 0})
+            player.move({1, 0});
         }
         //moving up
         else if(input == "up" && pY > 0 && floorgrid[pX][pY - 1] == "*") {
             //pY--;
-            player.move({0, -1})
+            player.move({0, -1});
         }
         //moving down
         else if(input == "down" && pY < gridY - 1 && floorgrid[pX][pY + 1] == "*") {
             //pY++;
-            player.move({0, 1})
+            player.move({0, 1});
         }
         else {
-            cout << "You ran into a wall!";
+            cout << "You ran into something!";
         }
+        // the floorgrid is updated to match the new positions
         floorgrid[pX][pY] = "*";
-        floorgrid[player.x][player.y] = "@";
+        floorgrid[player.getX()][player.getY()] = "@";
 
     }
 
     void moveEnemies() {
-        int playerX = player.x;
-        int playerY = player.y;
+        int playerX = player.getX();
+        int playerY = player.getY();
         for(Enemy enemy : enemies) {
             int enemX = enemy.x_location;
             int enemY = enemy.y_location;
@@ -147,6 +164,8 @@ public:
         }
     }
 
+
+
     void checkForDead(){
         for(Enemy e : enemies) {
             if(e.health == 0) {
@@ -155,22 +174,24 @@ public:
         }
     }
 
+    /**
+     * this might work better in a different file
     void enterNextLevel() {
         depth++;
         if(depth >= MAX_DEPTH) {
             //you win
         }
         else{
-            player.x = 0;
-            player.y = gridY / 2;
+            player.getX() = 0;
+            player.getY() = gridY / 2;
         }
     }
+     */
 
     void checkDoor() {
-        //whatever the player's number is
         if(floorgrid[doorX][doorY] == "@") {
             //next level function
-            enterNextLevel();
+            //enterNextLevel();
         }
     }
 
