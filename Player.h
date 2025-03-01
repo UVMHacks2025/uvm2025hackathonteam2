@@ -46,9 +46,9 @@ public:
         }
     }
 
-    void move(const vector<int>& pos) {
-        x += pos[0];
-        y += pos[1];
+    void move(int dx, int dy) {
+        x += dx;
+        y += dy;
     }
 
     void shield() {
