@@ -24,16 +24,7 @@ public:
     vector<Enemy> enemies;
     Player player;
 
-    Level(Player p, int dep) {
-        player = p;
-        depth = dep;
-        gridX = 5;
-        gridY = 5;
-        wallnumber = 5;
-        enemynumber = 5;
-        doorY = gridY / 2;
-        doorX = gridX - 1;
-    }
+    Level(Player p, int dep) : Level(p, dep, 5, 5, 5, 5) {}
 
     Level(Player p, int dep, int gx, int gy, int wallnum, int enemynum) {
         player = p;
@@ -44,6 +35,9 @@ public:
         enemynumber = enemynum;
         doorY = gridY / 2;
         doorX = gridX - 1;
+
+        fillEnemyVector();
+        fillGrid();
     }
 
     //create a bunch of enemies with attack values based on deepness
