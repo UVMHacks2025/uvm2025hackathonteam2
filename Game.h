@@ -83,6 +83,17 @@ public:
         }
     }
     //other stuff I assume
+
+    // create levels
+
+
+    //create player
+
+
+
+    // create game loop
+
+    // win by getting to end (in future, could make endless)
 };
 
 #endif //HACK_GAME_H
