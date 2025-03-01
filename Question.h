@@ -20,7 +20,9 @@ private:
 public:
     //Constructor
     Question() {
-
+        prompt = "";
+        isMcq = false;
+        answers.clear();
     };
 
     //Getters
