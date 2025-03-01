@@ -14,6 +14,7 @@ private:
     int experience;
     bool shieldUp;
     int attackDamage;
+    int critChance;
 
     int x;
     int y;
@@ -25,7 +26,7 @@ private:
     }
 
 public:
-    Player() : health(10), experience(0), shieldUp(false), attackDamage(1), x(0), y(0) {};
+    Player() : health(10), experience(0), shieldUp(false), attackDamage(1), critChance(5), x(0), y(0) {};
 
     void damage(int damage) {
         if (shieldUp) {
@@ -58,7 +59,13 @@ public:
     }
 
     void attack(Enemy enemy) {
-        enemy.hit(attackDamage);
+        int damage = attackDamage;
+
+        if (rand() % critChance == 0) {
+            damage *= 2;
+        }
+
+        enemy.hit(damage);
     }
 
     int getHealth() {
