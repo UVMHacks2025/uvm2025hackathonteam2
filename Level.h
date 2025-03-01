@@ -22,11 +22,6 @@ public:
     int enemynumber;
     vector<vector<string>> floorgrid;
     vector<Enemy> enemies;
-    vector<vector<int>> enemylocs;
-    struct Content {
-        Enemy enemy;
-        Player player;
-    };
     Player player;
 
     Level(Player p) {
@@ -151,6 +146,8 @@ public:
             cout << "\n";
         }
     }
+
+
 
     void checkForDead(){
         for(Enemy e : enemies) {
