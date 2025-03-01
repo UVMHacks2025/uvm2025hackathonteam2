@@ -18,7 +18,7 @@ private:
 	 bool isGoodAnswer(string s,int n) {
 		int c = (int)s[0];
 		c |= 32;
-		c -= 96;
+		c -= 97;
 		
 		return c<=n && c>0 ;	
 	}
@@ -57,7 +57,7 @@ public:
 		while(p.getHealth()>=0 && !e.is_dead()) {
 		int n = abilities.size();
 		for(int i = 0; i < abilities.size(); ++i){
-			cout << abilities[i] << "("<<(char)(i+96)<<"), ";
+			cout << abilities[i] << "("<<(char)(i+97)<<"), ";
 		}
 		string ans = "";
 		cin >> ans;
@@ -93,9 +93,9 @@ public:
 		if(isMultipleChoice){
 			string ans = "";
 			int num = question.getNumAnswers();
-			cout << "select answer (a-"<< (char)(num+96) << "):" << endl;
+			cout << "select answer (a-"<< (char)(num+97) << "):" << endl;
 			for(int i = 0; i < num; ++i) {
-				cout << "("<<(char)(i+96)<<") " << question.getAnswer(i) << endl;
+				cout << "("<<(char)(i+97)<<") " << question.getAnswer(i) << endl;
 			}
 			cin >> ans;	
 
@@ -103,7 +103,7 @@ public:
 				cout << "Invalid input, try again: ";
 				cin >> ans;
 			} 
-			return question.isCorrect((int)(num&(~96)));
+			return question.isCorrect((int)(num&(~96))-1);
 
 		}
 		else {
