@@ -94,7 +94,7 @@ public:
 				cout << "Invalid input, try again: ";
 				cin >> ans;
 		}
-		
+		if(ask(q)){	
 		switch((int)ans[0]){
 			case 'a':{
 				l.printLevel();
@@ -119,6 +119,7 @@ public:
 				int d = p.attack(&e);
 				cout << "you attack for" << d <<endl;
 			}
+		}
 		}
 			cout << e.get_type()<<" attacks you "<<endl;
 			int d = e.randomize_attack();
