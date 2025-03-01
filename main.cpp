@@ -10,11 +10,11 @@ int main() {
 	Game game = Game();
 
 	while(game.getPlayer().getHealth()>0){
-		Level l = game.getCurrentLevel();
+		Level* l = game.getCurrentLevel();
 		cout << "\033[H";
-		l.printLevel();
-		l.checkForDead();
-		l.moveEnemies();
+		l->printLevel();
+		l->checkForDead();
+		l->moveEnemies();
 		int d = game.getInterface().promptMoveLoop();
 		string dir = "up";
 		if(d==SOUTH){
@@ -30,11 +30,10 @@ int main() {
 			cout << "you quit the game"<< endl;
 			break;
 		}
-		Player p = game.getPlayer();
-		cout <<p.getX() << ", "<<p.getY()<<endl;
-		l.movePlayer(dir);
-		p = game.getPlayer();
-		cout <<p.getX() << ", "<<p.getY()<<endl;
+		Player* p = game.getPlayer();
+		cout <<p->getX() << ", "<<p->getY()<<endl;
+		l->movePlayer(dir);
+		cout <<p->getX() << ", "<<p->getY()<<endl;
 
 		
 	}
