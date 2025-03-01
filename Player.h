@@ -50,7 +50,7 @@ public:
 
     void move(vector<int> pos) {
         x += pos[0];
-        x += pos[1];
+        y += pos[1];
     }
 
     void shield() {
