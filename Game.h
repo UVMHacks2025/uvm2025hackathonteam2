@@ -8,6 +8,7 @@
 #include <iomanip>
 
 //#include "Level.h"
+#include "Interface.h"
 #include "Player.h"
 #include "Question.h"
 
@@ -17,7 +18,9 @@ class Game {
 private:
     //instance variables
     // vector<Level> levels;
-    // Player player;
+    Player player;
+
+    Interface interface;
 
     vector<Question> global_questions;
 
@@ -29,7 +32,7 @@ public:
         getQuestionsFromFile("questions.csv", global_questions);
 
         for (int i = 0; i < global_questions.size(); i++) {
-            cout << global_questions[i].getPrompt() << endl;
+            interface.ask(global_questions[i]);
         }
     }
 
