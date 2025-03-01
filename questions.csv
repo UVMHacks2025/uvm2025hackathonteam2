@@ -4,3 +4,6 @@ What is the value of x for x^2 + 2x = 8, true, 1, 4, 1, 2, 3, 6, 1, 2
 what is the best number, true, 0, 4,4,4,4,4,4,4,4,4,4
 limit of 1/x as x -> infinity, true, 2, 3, 0,1,infinity, 1, 0
 limit of x/x as x -> 0, true, 4, 3, 0,1,Does Not Exist, 1, Does Not Exist
+derivative of ln(x),true,4,4,x^(-1),1/x,e^x,ln(x),2,x^(-1),1/x
+second derivative of sin(x),true,5,4,sin(x),cos(x),-sin(x),-cos(x),1,-sin(x)
+
