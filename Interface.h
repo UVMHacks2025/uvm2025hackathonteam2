@@ -13,7 +13,8 @@ using namespace std;
 #define WEST 3
 class Interface {
 private:
-	 Question q;
+	 vector<Question> questions;
+	int qn;
 	long timelimit;
 	 bool isGoodAnswer(string s,int n) {
 		int c = (int)s[0];
@@ -23,7 +24,8 @@ private:
 		return c<=n && c>0 ;	
 	}
 public:
-	Interface() {
+	Interface(vector<Question> qs) : qn(0) {
+		questions = qs;
 	}
 	int promptMoveLoop(){
 		string ans = "";
@@ -94,7 +96,8 @@ public:
 				cout << "Invalid input, try again: ";
 				cin >> ans;
 		}
-		if(ask(q)){	
+		Question q = questions[qn];
+		if(ask(q)){
 		switch((int)ans[0]){
 			case 'a':{
 				l.printLevel();
