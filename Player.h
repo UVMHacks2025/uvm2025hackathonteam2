@@ -28,7 +28,7 @@ private:
 public:
     Player() : health(10), experience(0), shieldUp(false), attackDamage(1), critChance(5), x(0), y(0) {};
 
-    void damage(int damage) {
+    void damage(const int damage) {
         if (shieldUp) {
               cout << "Shield blocked " << damage << " points of damage" << endl;
               shieldUp = false;
@@ -37,7 +37,7 @@ public:
         }
     }
 
-    void addExperience(int exp) {
+    void addExperience(const int exp) {
         const int oldLevel = exp / 10;
         this->experience += exp;
 
@@ -45,11 +45,7 @@ public:
         }
     }
 
-    vector<string> getAbilities() {
-        return { "move", "shield", "attack" };
-    }
-
-    void move(vector<int> pos) {
+    void move(const vector<int>& pos) {
         x += pos[0];
         y += pos[1];
     }
@@ -58,7 +54,7 @@ public:
         shieldUp = true;
     }
 
-    void attack(Enemy enemy) {
+    void attack(Enemy enemy) const {
         int damage = attackDamage;
 
         if (rand() % critChance == 0) {
@@ -68,23 +64,27 @@ public:
         enemy.hit(damage);
     }
 
-    int getHealth() {
+    static vector<string> getAbilities() {
+        return { "move", "shield", "attack" };
+    }
+
+    int getHealth() const {
         return health;
     }
 
-    int getExperience() {
+    int getExperience() const {
         return experience;
     }
 
-    int getLevel() {
+    int getLevel() const {
       return experience / 10;
     }
 
-    int getX() {
+    int getX() const {
         return x;
     }
 
-    int getY() {
+    int getY() const {
         return y;
     }
 };
