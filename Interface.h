@@ -67,7 +67,7 @@ public:
 		
 		switch((int)ans[0]){
 			case 'a':{
-				p.move();
+				// p.move();
 				return rounds;
 			}
 			case 'b':{
