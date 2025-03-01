@@ -6,6 +6,8 @@
 #include <fstream>
 #include <iostream>
 #include <iomanip>
+
+#include "Level.h"
 #include "Question.h"
 
 using namespace std;
@@ -51,7 +53,7 @@ public:
 
             //read num answers and use for loop to get all the answers, set correct to false for all
 			fileIn >> numAnswers >> comma;
-            for (int i = 0; i < numAnswers, i++) {
+            for (int i = 0; i < numAnswers; i++) {
               getline(fileIn, tempAnswer, ',');
               answer ans;
               ans.choice = tempAnswer;
@@ -68,9 +70,9 @@ public:
 
             //iterate through for loops and change all correct answers to true
             for (int i = 0; i < correctAnswers.size(); i++) {
-              for (int i = 0; i < answers.size(); i++) {
-                if (correctAnswers[i].equals(answers[i].choice) {
-                	answers[i].correct = true;
+              for (int j = 0; j < answers.size(); j++) {
+                if (correctAnswers[i] == answers[j].choice) {
+                   answers[j].correct = true;
                 }
               }
             }
