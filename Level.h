@@ -1,6 +1,7 @@
 #ifndef HACK_LEVEL_H
 #define HACK_LEVEL_H
 #include <vector>
+#include <random>
 #include "Enemy.h"
 
 using namespace std;
@@ -14,7 +15,10 @@ public:
     int MAX_DEPTH = 5;
     int doorX;
     int doorY;
+    int gridX;
+    int gridY;
     vector<Enemy> enemies;
+    vector<vector<int>> enemylocs;
     struct Content {
         Enemy enemy;
         Player player;
@@ -26,10 +30,17 @@ public:
             //using deepness for the attack mod
             enemies.push_back(Enemy(1, depth));
         }
+        int checkForCl
+        for(int i = 0; i < enemies.size(); i++) {
+            // make sure the locations are all different
+            int proposedX = rand() % gridX;
+            int proposedY = rand() % gridY;
+            vector<int> proposedCoords = {proposedX, proposedY};
+        }
     }
 
     void checkForDead(){
-        for(Enemy e :enemies) {
+        for(Enemy e : enemies) {
             if(e.health == 0) {
                 e.dead = true;
             }
