@@ -116,12 +116,17 @@ public:
 				p.shield();
 			}
 			case 'c':{
-				p.attack(&e);
+				int d = p.attack(&e);
+				cout << "you attack for" << d <<endl;
 			}
 		}
+			cout << e.get_type()<<" attacks you "<<endl;
+			int d = e.randomize_attack();
+			cout << "you take "<< d << endl;
+			p.damage(d);
 			++rounds;
 		}
-		if(p.getHealth()>0){
+		if(p.getHealth()<0){
 			cout << "you DEAD"<< endl;	
 		}
 		else if(e.is_dead()){
