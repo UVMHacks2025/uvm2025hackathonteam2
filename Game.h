@@ -22,11 +22,12 @@ private:
     Interface interface;
     vector<Question> global_questions;
 
+    int currentLevel;
     int levelsWon;
     int score;
 public:
     //constructor
-    Game() : levelsWon(0), score(0) {
+    Game() : currentLevel(0), levelsWon(0), score(0) {
         for (int i = 0; i < 5; i++) {
             levels.push_back(Level(player, i));
         }
@@ -40,6 +41,10 @@ public:
                 cout << "Wrong!" << endl;
             }
         }
+    }
+
+    Level getCurrentLevel() {
+        return levels[currentLevel];
     }
 
     //method: get questions from csv file
