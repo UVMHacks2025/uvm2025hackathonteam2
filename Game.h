@@ -37,19 +37,20 @@ public:
           bool multChoice;
           vector<answer> answers;
           vector<string> correctAnswers;
+          char comma;
 
           while (fileIn && fileIn.peek() != EOF) {
             //take prompt
             getline(fileIn, prompt, ',');
 
             //get multChoice
-            getline(fileIn, multChoice, ',');
+			fileIn >> multChoice >> comma;
 
             //get level
             getline(fileIn, level, ',');
 
             //read num answers and use for loop to get all the answers, set correct to false for all
-            getline(fileIn, numAnswers, ',');
+			fileIn >> numAnswers >> comma;
             for (int i = 0; i < numAnswers, i++) {
               getline(fileIn, tempAnswer, ',');
               answer ans;
@@ -59,7 +60,7 @@ public:
             }
 
             //read num correct answers and use for loop to get them all, put in second vector
-            getline(fileIn, numCorrectAnswers, ',');
+            fileIn >> numCorrectAnswers >> comma;
             for (int i = 0; i < numCorrectAnswers; i++) {
               getline(fileIn, tempCorrectAnswer, ',');
               correctAnswers.push_back(tempCorrectAnswer);
