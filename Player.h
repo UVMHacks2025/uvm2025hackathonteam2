@@ -42,6 +42,7 @@ public:
         this->experience += exp;
 
         if (getLevel() > oldLevel) {
+            levelUp();
         }
     }
 
