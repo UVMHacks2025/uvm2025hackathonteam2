@@ -31,67 +31,63 @@ public:
         ifstream fileIn;
         fileIn.open(filename);
         if (fileIn) {
-          string header;
-          getline(fileIn, header);
+        	string header;
+        	getline(fileIn, header);
 
-          string prompt, level, tempAnswer, tempCorrectAnswer;
-          int numAnswers, numCorrectAnswers;
-          bool multChoice;
-          vector<answer> answers;
-          vector<string> correctAnswers;
-          char comma;
+          	string prompt, level, tempAnswer, tempCorrectAnswer;
+          	int numAnswers, numCorrectAnswers;
+          	bool multChoice;
+          	vector<answer> answers;
+          	vector<string> correctAnswers;
+        	char comma;
 
-          while (fileIn && fileIn.peek() != EOF) {
-            //take prompt
-            getline(fileIn, prompt, ',');
+          	while (fileIn && fileIn.peek() != EOF) {
+            	//take prompt
+            	getline(fileIn, prompt, ',');
 
-            //get multChoice
-			fileIn >> multChoice >> comma;
+            	//get multChoice
+				fileIn >> multChoice >> comma;
 
-            //get level
-            getline(fileIn, level, ',');
+            	//get level
+            	getline(fileIn, level, ',');
 
-            //read num answers and use for loop to get all the answers, set correct to false for all
-			fileIn >> numAnswers >> comma;
-            for (int i = 0; i < numAnswers; i++) {
-              getline(fileIn, tempAnswer, ',');
-              answer ans;
-              ans.choice = tempAnswer;
-              ans.correct = false;
-              answers.push_back(ans);
-            }
+            	//read num answers and use for loop to get all the answers, set correct to false for all
+				fileIn >> numAnswers >> comma;
+            	for (int i = 0; i < numAnswers; i++) {
+              		getline(fileIn, tempAnswer, ',');
+              		answer ans;
+              		ans.choice = tempAnswer;
+              		ans.correct = false;
+              		answers.push_back(ans);
+            	}
 
-            //read num correct answers and use for loop to get them all, put in second vector
-            fileIn >> numCorrectAnswers >> comma;
-            for (int i = 0; i < numCorrectAnswers; i++) {
-              getline(fileIn, tempCorrectAnswer, ',');
-              correctAnswers.push_back(tempCorrectAnswer);
-            }
+            	//read num correct answers and use for loop to get them all, put in second vector
+            	fileIn >> numCorrectAnswers >> comma;
+            	for (int i = 0; i < numCorrectAnswers; i++) {
+              		getline(fileIn, tempCorrectAnswer, ',');
+              		correctAnswers.push_back(tempCorrectAnswer);
+            	}
 
-            //iterate through for loops and change all correct answers to true
-            for (int i = 0; i < correctAnswers.size(); i++) {
-              for (int j = 0; j < answers.size(); j++) {
-                if (correctAnswers[i] == answers[j].choice) {
-                   answers[j].correct = true;
-                }
-              }
-            }
+           		//iterate through for loops and change all correct answers to true
+            	for (int i = 0; i < correctAnswers.size(); i++) {
+              		for (int j = 0; j < answers.size(); j++) {
+                		if (correctAnswers[i] == answers[j].choice) {
+                   			answers[j].correct = true;
+                		}
+              		}
+            	}
 
-            //create Question from those
-			//add Question to questions vector
-			questions.push_back(Question(prompt, multChoice, answers));
-
-          }
+            	//create Question from those
+				//add Question to questions vector
+				questions.push_back(Question(prompt, multChoice, answers));
+          	}
         }
     }
     //other stuff I assume
 
     // create levels
 
-
-    //create player
-
-
+    // create player
 
     // create game loop
 

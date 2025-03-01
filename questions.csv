@@ -6,4 +6,5 @@ limit of 1/x as x -> infinity, true, 2, 3, 0,1,infinity, 1, 0
 limit of x/x as x -> 0, true, 4, 3, 0,1,Does Not Exist, 1, Does Not Exist
 derivative of ln(x),true,4,4,x^(-1),1/x,e^x,ln(x),2,x^(-1),1/x
 second derivative of sin(x),true,5,4,sin(x),cos(x),-sin(x),-cos(x),1,-sin(x)
-
+integral of 2x,true,3,4,2,(1/3)x^3,x^2,x,1,x^2
+partial derivative of 2x + y^2 with respect to y,true,7,4,2,2x + 2y,2 + y^2,2y,1,2y

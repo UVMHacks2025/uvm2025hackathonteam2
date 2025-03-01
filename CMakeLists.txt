@@ -4,6 +4,3 @@ project(hack)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(hack main.cpp)
-
-add_executable(hack_atticus testingAtticus.cpp)
-add_executable(hack_ellie testingEllie.cpp)
