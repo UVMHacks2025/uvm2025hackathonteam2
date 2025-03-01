@@ -4,6 +4,7 @@
 #include "Question.h"
 #include "Player.h"
 #include "Enemy.h"
+//#include "Level.h"
 #include <thread>
 using namespace std;
 #define NORTH 0
@@ -50,8 +51,9 @@ public:
 			
 	}
 	//returns num rounds passed
-	int fight(Player p, Enemy e) {
+	int fight(Player p, Enemy e, Level l) {
 		vector<string> abilities = p.getAbilities();
+		cout << 
 		int rounds = 0;
 		while(p.getHealth()>=0 && !e.is_dead()) {
 		int n = abilities.size();
@@ -67,7 +69,7 @@ public:
 		
 		switch((int)ans[0]){
 			case 'a':{
-				// p.move();
+				//l.move();
 				return rounds;
 			}
 			case 'b':{
@@ -93,6 +95,9 @@ public:
 			string ans = "";
 			int num = question.getNumAnswers();
 			cout << "select answer (a-"<< (char)(num+96) << "):" << endl;
+			for(int i = 0; i < num; ++i) {
+				cout << "("<<(char)(i+96)<<")" << question.getAnswer(i) << endl;
+			}
 			cin >> ans;	
 
 			while(ans.size() !=1 || !isGoodAnswer(ans,num)) {
