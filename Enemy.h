@@ -34,7 +34,7 @@ class Enemy {
         }
 
         int randomize_attack(){
-          int attack_val = rand()%3 + 1 + attack_mod;
+          int attack_val = rand()%3 + attack_mod;
           if (rand() % crit_chance == 0){
               return attack3(attack_val)*2;
           }
