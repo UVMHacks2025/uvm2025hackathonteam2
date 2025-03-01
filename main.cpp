@@ -1,9 +1,17 @@
-#include "Interface.h"
 #include <iostream>
+
+#include "Game.h"
+#include "Interface.h"
 
 using namespace std;
 
 int main() {
+	Game game = Game();
+
+	return 0;
+}
+
+int old() {
 	Question q = Question();
 	q.setPrompt("Q1");
 	q.setIsMcq(true);
@@ -17,6 +25,6 @@ int main() {
 	Enemy e = Enemy(100,1,0,0);
 	test.fight(p,e);
 
-	cout << "Running" << endl;	
+	cout << "Running" << endl;
 	return 0;
 }

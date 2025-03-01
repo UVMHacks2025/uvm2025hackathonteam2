@@ -7,7 +7,8 @@
 #include <iostream>
 #include <iomanip>
 
-#include "Level.h"
+//#include "Level.h"
+#include "Player.h"
 #include "Question.h"
 
 using namespace std;
@@ -15,15 +16,19 @@ using namespace std;
 class Game {
 private:
     //instance variables
-	vector<Level> levels;
-	Player player;
+	// vector<Level> levels;
+	// Player player;
+
+    vector<Question> global_questions;
+
     int levelsWon;
     int score;
 public:
     //constructor
-    Game() {
-        levelsWon = 0;
-        score = 0;
+    Game() : levelsWon(0), score(0) {
+		getQuestionsFromFile("questions.csv", global_questions);
+
+		cout << global_questions[0].getPrompt() << endl;
     }
 
     //method: get questions from csv file
@@ -81,6 +86,8 @@ public:
 				//add Question to questions vector
 				questions.push_back(Question(prompt, multChoice, answers));
           	}
+
+        	fileIn.close();
         }
     }
     //other stuff I assume

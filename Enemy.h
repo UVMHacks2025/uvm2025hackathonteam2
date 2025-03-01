@@ -34,10 +34,10 @@ class Enemy {
         }
 
         int randomize_attack(){
-          int attack_val = rand()%3 + attack_mod;
-          if (rand() % crit_chance == 0){
-              return attack3(attack_val)*2;
-          }
+            int attack_val = rand()%3 + attack_mod;
+            if (rand() % crit_chance == 0){
+                return attack3(attack_val)*2;
+            }
             if (rand() % crit_chance == 1){
                 return attack1(attack_val);
             }
@@ -50,26 +50,32 @@ class Enemy {
         int attack1(int attack_damage){
             return (attack_damage) + 1;
         }
+
         int attack2(int attack_damage){
             return (attack_damage) + 2;
         }
+
         int attack3(int attack_damage){
             std::cout << "CRITICAL HIT" << std::endl;
             return (attack_damage);
         }
+
         void move(vector<int> pos){
             x_location = x_location+pos[0];
             y_location = y_location+pos[1];
         }
+
         vector<int> get_location(){
           vector<int> location;
           location.push_back(x_location);
           location.push_back(y_location);
           return location;
         }
+
         bool is_dead(){
           return dead;
         }
+
         bool hit(int damage){
           health -= damage;
           if(health <= 0){
@@ -77,22 +83,27 @@ class Enemy {
           }
           return dead;
         }
+
         string get_type(){
             string string_type = "ITS BROKEN";
-            if (type == 0) {
+            switch (type) {
+            case 0:
                 string_type = "goat";
-            }
-            if (type == 1) {
+                break;
+            case 1:
                 string_type = "sheep";
-            }
-            if (type == 2) {
+                break;
+            case 2:
                 string_type = "bat";
+                break;
             }
           return string_type;
         }
+
         int get_health(){
           return health;
         }
+
         string return_image(){
             if (type == 0)
 			    return "BAAAAAAAAAA";
