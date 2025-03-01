@@ -28,7 +28,7 @@ private:
 public:
     //constructor
     Game() : currentLevel(0), levelsWon(0), score(0) {
-        interfaces = Interface(global_questions);
+        interface = Interface(global_questions);
         for (int i = 0; i < 5; i++) {
             levels.push_back(Level(player, i));
         }
