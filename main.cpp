@@ -6,10 +6,12 @@
 using namespace std;
 
 int main() {
+	cout << "\033[H\033[J";
 	Game game = Game();
 
 	while(game.getPlayer().getHealth()>0){
 		Level l = game.getCurrentLevel();
+		cout << "\033[h"<< endl;
 		l.printLevel();
 		l.moveEnemies();
 		int d = game.getInterface().promptMovement();
