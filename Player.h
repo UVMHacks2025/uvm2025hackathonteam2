@@ -57,7 +57,7 @@ public:
         shieldUp = true;
     }
 
-    void attack(Enemy enemy) const {
+    int attack(Enemy enemy) const {
         int damage = attackDamage;
 
         if (rand() % critChance == 0) {
@@ -65,6 +65,8 @@ public:
         }
 
         enemy.hit(damage);
+
+        return damage;
     }
 
     static vector<string> getAbilities() {
