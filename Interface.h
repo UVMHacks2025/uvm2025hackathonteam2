@@ -33,12 +33,15 @@ public:
 			while(ans.size() !=1 || !isGoodAnswer(ans,num)) {
 				cin >> ans;
 			} 
+			return question.isCorrect((int)(num&(~96)));
 
 		}
 
+		return false;
+
 	}
 	bool ask(long time) {
-		ask();	
+		return ask();	
 	}
 
 	Question getQuestion() {
