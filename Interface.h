@@ -4,7 +4,7 @@
 #include "Question.h"
 #include "Player.h"
 #include "Enemy.h"
-//#include "Level.h"
+#include "Level.h"
 #include <thread>
 using namespace std;
 #define NORTH 0
@@ -51,7 +51,7 @@ public:
 			
 	}
 	//returns num rounds passed
-	int fight(Player p, Enemy e) {
+	int fight(Player p, Enemy e, Level l) {
 		vector<string> abilities = p.getAbilities();
 		int rounds = 0;
 		while(p.getHealth()>=0 && !e.is_dead()) {
@@ -68,7 +68,18 @@ public:
 		
 		switch((int)ans[0]){
 			case 'a':{
-				//l.move();
+				int d = promptMovement();
+				string dir = "up";
+				if(d==SOUTH){
+					dir = "down";
+				}
+				if(d==EAST){
+					dir = "right";
+				}
+				if(d==WEST){
+					dir = "left";
+				}
+				l.movePlayer(dir);
 				return rounds;
 			}
 			case 'b':{
