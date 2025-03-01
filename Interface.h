@@ -91,6 +91,12 @@ public:
 		}
 			++rounds;
 		}
+		if(p.getHealth()>0){
+			cout << "you DEAD"<< endl;	
+		}
+		else if(e.is_dead()){
+			p.addExperience(e.experience);
+		}
 
 
 		return rounds;	

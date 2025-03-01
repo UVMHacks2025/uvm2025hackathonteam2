@@ -8,7 +8,7 @@ using namespace std;
 int main() {
 	Game game = Game();
 
-	while(true){
+	while(game.getPlayer().getHealth()>0){
 		Level l = game.getCurrentLevel();
 		l.printLevel();
 		l.moveEnemies();
@@ -24,7 +24,6 @@ int main() {
 			dir = "left";
 		}
 		l.movePlayer(dir);
-		Player p = game.getPlayer();
 		
 	}
 	return 0;
