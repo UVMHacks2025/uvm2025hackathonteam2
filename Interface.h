@@ -14,6 +14,8 @@ public:
 	void askQuestion(){
 		//prompt
 		cout << question.getPrompt() << endl;
+		getAnswerType();
+
 	}
 	void askQuestion(long time) {
 		askQuestion();	
